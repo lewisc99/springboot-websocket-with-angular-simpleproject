@@ -13,8 +13,6 @@ export class AppComponent {
   public  newMessage:any[];
   public stompConnection:any;
   constructor(){
-    this.initializeWebSocketConnection();
-    this.readMessage();
     this.newMessage = [];
   }
 
@@ -24,6 +22,8 @@ export class AppComponent {
     this.stompConnection = this;
     this.stompClient.connect({}
     );
+    this.readMessage();
+
   }
 
   readMessage()
@@ -43,9 +43,11 @@ export class AppComponent {
     console.log(message)
    this.stompClient.send("/app/send/message" , {}, message);
 
+  }
 
-
-
+  connectWebSocket()
+  {
+    this.initializeWebSocketConnection();
   }
 }
 
