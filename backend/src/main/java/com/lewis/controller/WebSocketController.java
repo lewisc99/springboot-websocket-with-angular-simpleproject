@@ -3,6 +3,7 @@ package com.lewis.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.messaging.handler.annotation.MessageMapping;
+import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.simp.SimpMessagingTemplate;
 import org.springframework.stereotype.Controller;
 
@@ -22,6 +23,7 @@ public class WebSocketController {
 
 
     @MessageMapping("/send/message")
+    @SendTo("app/news")
     public void onReceiveMessage(String message)
     {
         this.template.convertAndSend("/chat",new SimpleDateFormat("HH:mm:ss").format(new Date())+ "- " + message);
