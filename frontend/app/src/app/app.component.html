@@ -2,8 +2,12 @@
 <div class="container">
 <div class="row">
         <div class="log-button">
-                <button (click)="connectWebSocket()">Connect</button>
-                <button>Disconnect</button>
+                <p class="informationConnection" >{{informationConnection}}</p>
+                <div class="buttons">
+                        <button (click)="connectWebSocket()">Connect</button>
+                        <button (click)="disconnectWebSocket()">Disconnect</button>
+                </div>
+            
         </div>
 
         <div class="form">

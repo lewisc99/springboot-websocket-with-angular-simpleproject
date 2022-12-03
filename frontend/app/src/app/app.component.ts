@@ -11,6 +11,7 @@ export class AppComponent {
   private serverUrl = 'http://localhost:8080/socket'
   private stompClient:any;
   public  newMessage:any[];
+  public informationConnection:string = "Disconnect";
   public stompConnection:any;
   constructor(){
     this.newMessage = [];
@@ -23,7 +24,7 @@ export class AppComponent {
     this.stompClient.connect({}
     );
     this.readMessage();
-
+     this.informationConnection = "Connect"
   }
 
   readMessage()
@@ -48,6 +49,15 @@ export class AppComponent {
   connectWebSocket()
   {
     this.initializeWebSocketConnection();
+  }
+
+  disconnectWebSocket()
+  {
+    if (this.stompClient != null)
+    {
+      this.stompClient.disconnect();
+      this.informationConnection = "Disconnect";
+    }
   }
 }
 
